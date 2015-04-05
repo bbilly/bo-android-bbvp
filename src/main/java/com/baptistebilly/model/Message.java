@@ -17,8 +17,11 @@ public class Message {
 	public void setAuteur(String auteur) {
 		this.auteur = auteur;
 	}
-
 	
+	
+	public String toString() {
+		return this.auteur+":"+this.message;
+	}
 	
 
 }

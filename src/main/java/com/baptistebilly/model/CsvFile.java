@@ -60,7 +60,7 @@ public class CsvFile {
        return data;
    }
 
-   public boolean writeCsv(String filename, Message m) {
+   public boolean writeMessageCsv(String filename, Message m) {
 	   FileWriter fileWriter = null;
 	  
 	   try {
@@ -68,6 +68,35 @@ public class CsvFile {
 			fileWriter.append(m.getAuteur());
 			fileWriter.append(SEPARATOR);
 			fileWriter.append(m.getMessage());
+			fileWriter.append(NEW_LINE_SEPARATOR);
+			
+		} catch (Exception e) {
+			System.out.println("Error in CsvFileWriter !!!");
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				fileWriter.flush();
+				fileWriter.close();
+				return true;
+			} catch (IOException e) {
+				System.out.println("Error while flushing/closing fileWriter !!!");
+               e.printStackTrace();
+			}
+			
+		}
+	   return false;
+	   
+   }
+   
+   public boolean writeUtilisateurCsv(String filename, Utilisateur u) {
+	   FileWriter fileWriter = null;
+	  
+	   try {
+			fileWriter = new FileWriter(filename,true);
+			fileWriter.append(u.getLogin());
+			fileWriter.append(SEPARATOR);
+			fileWriter.append(u.getPassword());
 			fileWriter.append(NEW_LINE_SEPARATOR);
 			
 		} catch (Exception e) {

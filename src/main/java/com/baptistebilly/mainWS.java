@@ -2,7 +2,10 @@ package com.baptistebilly;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -50,5 +53,16 @@ public class mainWS {
 		 }
 		 else
 			 return false;
+	 }
+	 
+	 @POST
+	 @Path("enregistrer")
+	 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	 @Produces(MediaType.APPLICATION_JSON)
+	 public boolean creerUtilisateur(@FormParam("login") String login, @FormParam("password") String password) {
+		Utilisateur u = new Utilisateur();
+		u.setLogin(login);
+		u.setPassword(password);
+		return op.ajoutUtilisateur(u);
 	 }
 }

@@ -11,8 +11,8 @@ import com.baptistebilly.model.Utilisateur;
 
 public class OperationUtilisateur {
 	
-	private static final String file_users = "C:/Users/Baptiste/git/bo-android-bbvp/bo-android-bbvp/src/main/java/com/baptistebilly/util/utilisateurs.csv";
-	private static final String message_users = "C:/Users/Baptiste/git/bo-android-bbvp/bo-android-bbvp/src/main/java/com/baptistebilly/util/messages.csv";
+	private static final String file_users = "/home/baptiste/data/utilisateurs.csv";
+	private static final String message_users = "/home/baptiste/data/messages.csv";
 	
 	
 	public boolean connexionUtilisateur(Utilisateur u) {
@@ -65,8 +65,22 @@ public class OperationUtilisateur {
 	
 	public boolean envoyerMessage(Message m) {
 		CsvFile csv = new CsvFile();
-		return csv.writeCsv(message_users, m);
+		return csv.writeMessageCsv(message_users, m);
 		
+	}
+	
+	public boolean ajoutUtilisateur(Utilisateur u) {
+		int res = 0;
+		CsvFile csv = new CsvFile();
+		for(Utilisateur a : this.getUtilisateurs()) {
+			if(a.getLogin().equals(u.getLogin()))
+				res++;
+		}
+		if(res == 0) {
+			return csv.writeUtilisateurCsv(file_users, u);
+		}
+		else
+			return false;
 	}
 
 }
