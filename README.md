@@ -4,7 +4,7 @@ L'appli Android est disponible <a href="https://github.com/bbilly/Projet-Android
 URL pour s'enregistrer et accéder à l'application : <a href="http://dev.baptistebilly.com/bbvp_register/">http://dev.baptistebilly.com/bbvp_register/</a>
 
 
-<h3>Liste des WS</h3>
+<h3>Liste des WS (GET)</h3>
 <ul>
   <li>
   /connect/{pseudo}/{password} : renvoie "true" si le pseudo et le password sont corrects
